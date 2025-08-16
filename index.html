@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIで、ブログはもっと自由に、もっと速く。 | Memories-to-Go</title>
+    <meta name="description" content="AIがあなたの強力なアシスタントに。文章が苦手、時間がない、そんな悩みはもう不要。AIを活用して、今こそ新しいブログの世界へ踏み出しましょう。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --note-color: #41c9b4;
+            --orange-grad-start: #f39c12;
+            --orange-grad-end: #e67e22;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --white-color: #ffffff;
+            --light-gray-color: #ecf0f1;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 720px; /* Adjusted for vertical layout */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(45deg, rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)), url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-outline.png');
+            background-size: cover;
+            color: var(--white-color);
+            text-align: center;
+            padding: 80px 20px 80px;
+        }
+
+        .header-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid var(--white-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            margin: 0 0 15px;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        main {
+            padding-top: 20px;
+        }
+
+        .section {
+            position: relative; /* For pseudo-elements */
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section.bg-white {
+            background-color: var(--white-color);
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-subtitle {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            color: #555;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(52, 152, 219, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: var(--white-color);
+            color: var(--secondary-color);
+            border: 2px solid var(--light-gray-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-gray-color);
+            border-color: var(--light-gray-color);
+            transform: translateY(-2px);
+        }
+        
+        .btn-social {
+            background-color: #1DA1F2;
+            color: var(--white-color);
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .btn-social:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+        }
+        
+        .btn-social i {
+            margin-right: 10px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-twitter:hover {
+             background-color: #1a91da;
+        }
+
+        .btn-note {
+            background-color: var(--note-color);
+        }
+        .btn-note:hover {
+            background-color: #3ab8a5;
+        }
+
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Changed to single column */
+            gap: 25px; /* Adjusted gap for vertical layout */
+            margin-top: 50px;
+            text-align: left;
+        }
+
+        .step-card {
+            background: var(--white-color);
+            border-radius: 10px;
+            padding: 35px 30px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary-color); /* Changed border to left */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .step-card-content {
+            flex-grow: 1;
+        }
+
+        .step-card h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .step-card p {
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .step-card .btn {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+            margin-top: auto;
+            background: linear-gradient(45deg, var(--secondary-color), #2980b9);
+            color: var(--white-color);
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .step-card .btn:hover {
+            background: linear-gradient(45deg, #2980b9, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .step-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .author-profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .author-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: 4px solid var(--white-color);
+        }
+
+        .author-bio {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .author-bio p {
+            font-size: 1rem;
+            margin: 0 0 20px;
+        }
+
+        .author-bio .btn {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            margin: 20px auto 0;
+            text-align: center;
+            box-sizing: border-box;
+            background: linear-gradient(45deg, var(--orange-grad-start), var(--orange-grad-end));
+            color: var(--white-color);
+            border: none;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4);
+        }
+
+        .author-bio .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.5);
+        }
+
+        #social {
+            background-image: url('social-bg.png');
+            background-size: cover;
+            background-position: center;
+            color: var(--white-color);
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        }
+
+        #social::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.75);
+            z-index: 0;
+        }
+
+        #social .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #social .section-title {
+            color: var(--white-color);
+        }
+
+        #social .section-title::after {
+            background-color: var(--white-color);
+        }
+
+        #social .section-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .author-profile {
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="author-icon.png" alt="アイコン" class="header-icon">
+            <h1>AIで、ブログはもっと自由に、もっと速く。副業ブログを今こそ始めよう！</h1>
+            <p>副業で月5万円を目指しませんか？ 文章が苦手でも、時間がなくても大丈夫。AIがあなたの強力なアシスタントとなり、ブログ収益化をサポートします。今こそ、新しい収入の柱を作りましょう。</p>
+            <a href="https://memoriesto-go.com/archives/blog-roadmaps.html" target="_blank" class="btn btn-primary">月５万円を目指すロードマップを見る</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="steps" class="section bg-white">
+            <div class="container">
+                <h2 class="section-title">AIブログを始める4つのステップ</h2>
+                <p class="section-subtitle">ブログの開設から、AIを使った記事作成、そして収益化まで。あなたのブログ運営をスタートからサポートします。</p>
+                <div class="step-grid">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-card-content">
+                            <div class="step-number">STEP 01</div>
+                            <h3>WordPressブログを開設</h3>
+                            <p>あなたの情報発信の拠点となるブログを作成。初心者でも分かりやすい開設手順はこちらで解説しています。</p>
+                        </div>
+                        <a href="https://memoriesto-go.com/archives/conohawing.html" target="_blank" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-card-content">
+                            <div class="step-number">STEP 02</div>
+                            <h3>WordPressテーマを選ぶ</h3>
+                            <p>あなたのブログに最適なデザインを選びましょう。おすすめのテーマや設定方法を紹介します。</p>
+                        </div>
+                        <a href="https://memoriesto-go.com/archives/theme-ranking.html" target="_blank" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-card-content">
+                            <div class="step-number">STEP 03</div>
+                            <h3>AIで記事を書いてみる</h3>
+                            <p>AIを使いこなすコツを掴んで、質の高い記事を効率的に作成。具体的なプロンプト（指示文）も解説しています。</p>
+                        </div>
+                        <a href="https://memoriesto-go.com/archives/ai-writeing.html" target="_blank" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-card-content">
+                            <div class="step-number">STEP 04</div>
+                            <h3>ブログを収益化する</h3>
+                            <p>あなたの書いた記事を収益に変える方法を学びましょう。アフィリエイトなど、具体的な手法を紹介します。</p>
+                        </div>
+                        <a href="https://memoriesto-go.com/archives/blog-roadmaps.html" target="_blank" class="btn btn-secondary">詳しく見る</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="author" class="section">
+            <div class="container">
+                <h2 class="section-title">ウタカタブログについて</h2>
+                <div class="author-profile">
+                    <img src="author-icon.png" alt="著者アイコン" class="author-icon">
+                    <div class="author-bio">
+                        <p>副業初心者が収入を得る第一歩を優しく解説。AIを活用したブログ運営のノウハウを中心に、ポイ活やお金の知識など、テクノロジーを味方につけて賢く稼ぐ情報を発信しています。</p>
+                        <a href="https://memoriesto-go.com/" target="_blank" class="btn btn-secondary">ブログトップへ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="social" class="section">
+            <div class="container">
+                <h2 class="section-title">Follow Me</h2>
+                <p class="section-subtitle">ブログの更新情報や、ここだけの情報をXやnoteで発信しています。</p>
+                <div class="social-buttons">
+                    <a href="https://x.com/utakatablog2" target="_blank" class="btn btn-social btn-twitter">
+                        <i class="fab fa-twitter"></i> Xでフォロー
+                    </a>
+                    <a href="https://note.com/pecosan0810" target="_blank" class="btn btn-social btn-note">
+                        noteで読む
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ウタカタブログ. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/5e1e1b1b1b.js" crossorigin="anonymous"></script>
+</body>
+</html>
